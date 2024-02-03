@@ -47,8 +47,12 @@ include('includes/header.php');
             <img src="images/<?= htmlspecialchars($post['autorFoto']) ?>" alt="Foto del autor" width="100px"/>
         <?php endif; ?>
         <p>Publicado por: <?= htmlspecialchars($post['autorNombre']) ?></p>
-        <?= $content = preg_replace("/(\r\n|\r|\n){2,}/", "\n\n", $post['content']);
-        echo nl2br(htmlspecialchars($content)); ?>
+        <?php $content = preg_replace("/(\r\n|\r|\n){2,}/", "\n\n", $post['content']);
+        
+        $content = preg_replace('/(<br\s*\/?>\s*){2,}/', '<br /><br />', $content);
+
+// Imprime el contenido
+echo $content; ?>
     </div>
 <?php else : ?>
     <p>Post no encontrado.</p>

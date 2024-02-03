@@ -10,3 +10,16 @@
     border: 1px solid red;
     background-color: #ffcccc;
 }
+.error::placeholder {
+    color: red;
+}
+
+.header-text:hover{
+    color: #f1f1f1;
+    text-decoration: underline;
+}
+
+.text-error{
+    color: red;
+    font-size: 13px;
+}

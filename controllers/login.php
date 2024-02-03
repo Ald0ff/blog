@@ -25,5 +25,10 @@ if (!empty($_POST['email']) && !empty($_POST['password'])) {
         header("Location: ../index.php");
         exit;
     }
+} else {
+    $_SESSION['message'] = 'Aun no hay usuarios creados';
+    $_SESSION['message_type'] = "danger";
+    header("Location: ../index.php");
+    exit;
 }
 ?>

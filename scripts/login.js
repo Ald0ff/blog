@@ -12,36 +12,43 @@ document.querySelector('.signup').addEventListener('click', function () {
     login.classList.remove('d-none')
     signup.classList.add('d-none')
 }); */
+let inputs = document.querySelectorAll('input');
 
+inputs.forEach(function (input) {
+    input.addEventListener('input', function () {
+        let mensaje = this.nextElementSibling;
 
-document.querySelector('.signup-form').addEventListener('submit', function (event) {
-    
+        if (this.value !== '') {
+            this.classList.remove('error');
+            if (mensaje) mensaje.classList.add('d-none');
+        }
+    });
+});
+
+document.querySelector('form').addEventListener('submit', function (event) {
+
     //event.preventDefault();
     let isValid = true;
     let inputs = this.querySelectorAll('input');
 
-    
-    inputs.forEach(function (input) {
-        if (input.value === '' ) {
-            input.classList.add('error');
-            isValid = false;
 
+    inputs.forEach(function (input) {
+        let mensaje = input.nextElementSibling;
+        //console.log(mensaje)
+        if (input.value === '') {
+            input.classList.add('error');
+            if (mensaje) mensaje.classList.remove('d-none');
+            isValid = false;
         } else {
             input.classList.remove('error');
+            if (mensaje) mensaje.classList.add('d-none');
         }
     });
 
-    
-    if (!isValid) {
+
+    if (isValid == false) {
         event.preventDefault();
     }
 
-    inputs.forEach(function(input) {
-        input.addEventListener('input', function() {
-            
-            if (this.value !== '') {
-                this.classList.remove('error');
-            }
-        });
-    });
+
 });

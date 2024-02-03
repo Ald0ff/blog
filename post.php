@@ -6,11 +6,11 @@ require 'db_connection.php';
 $filterByCurrentUser = $filterByCurrentUser ?? false;
 
 if ($filterByCurrentUser && isset($userId)) {
-    
+
     $postsQuery = $conn->prepare("SELECT posts.id, posts.content, posts.created_at, usuarios.nombre, usuarios.foto FROM posts JOIN usuarios ON posts.user_id = usuarios.id WHERE posts.user_id = :userId ORDER BY posts.created_at DESC");
     $postsQuery->bindParam(':userId', $userId);
 } else {
-    
+
     $postsQuery = $conn->query("SELECT posts.id, posts.content, posts.created_at, usuarios.nombre, usuarios.foto FROM posts JOIN usuarios ON posts.user_id = usuarios.id ORDER BY posts.created_at DESC");
 }
 
@@ -18,7 +18,13 @@ $postsQuery->execute();
 $posts = $postsQuery->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
-
+<?php if (!$posts) : ?>
+    <div class='d-flex  mb-3 align-items-end justify-content-center'>
+        <h2>
+            Aun no hay posteados
+        </h2>
+    </div>
+<?php endif; ?>
 <?php foreach ($posts as $post) : ?>
     <div class="card mb-3 p-3">
         <div class='d-flex gap-3 mb-3 align-items-end'>
@@ -32,8 +38,11 @@ $posts = $postsQuery->fetchAll(PDO::FETCH_ASSOC);
             <?= date('j M Y', strtotime($post['created_at'])) ?>
         </p>
         <div class="texto-limitado">
-            <?= $content = preg_replace("/(\r\n|\r|\n){2,}/", "\n\n", $post['content']);
-            echo nl2br(htmlspecialchars($content));
+            <?php $cleanContent = htmlspecialchars($post['content']);
+
+            $content = preg_replace("/(\r\n|\r|\n){2,}/", "\n\n", $cleanContent);
+
+            echo nl2br($content);
             ?>
         </div>
         <p>

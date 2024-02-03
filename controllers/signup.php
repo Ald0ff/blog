@@ -12,7 +12,7 @@ if (!empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['nomb
     if ($stmt->fetch(PDO::FETCH_ASSOC)) {
         $_SESSION['message'] = 'Este correo electrónico ya está registrado.';
         $_SESSION['message_type'] = "danger";
-        header("Location: ../vistas/signup.php");
+        header("Location: ../signup.php");
         exit;
     }
 
@@ -23,7 +23,7 @@ if (!empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['nomb
     if ($stmt->fetch(PDO::FETCH_ASSOC)) {
         $_SESSION['message'] = 'Este nombre de usuario ya está en uso.';
         $_SESSION['message_type'] = "danger";
-        header("Location: ../vistas/signup.php");
+        header("Location: ../signup.php");
         exit;
     }
 
@@ -56,36 +56,36 @@ if (!empty($_POST['email']) && !empty($_POST['password']) && !empty($_POST['nomb
                 
                 if ($stmt->execute()) {
                     $message = 'Usuario creado con exito';
-                    header("Location: ../vistas/signup.php");
+                    header("Location: ../index.php");
                     exit;
                 } else {
                     $_SESSION['message'] = 'Hubo un error intentando crear el usuario';
                     $_SESSION['message_type'] = "danger";
-                    header("Location: ../vistas/signup.php");
+                    header("Location: ../signup.php");
                     exit;
                 }
             } else {
                 $_SESSION['message'] = 'Hubo un error cargando la imagen';
                 $_SESSION['message_type'] = "danger";
-                header("Location: ../vistas/signup.php");
+                header("Location: ../signup.php");
                 exit;
             }
         } else {
             $_SESSION['message'] = 'Tu imageen es muy grande.';
             $_SESSION['message_type'] = "danger";
-            header("Location: ../vistas/signup.php");
+            header("Location: ../signup.php");
             exit;
         }
     } else {
         $_SESSION['message'] = 'El archivo no es una imagen.';
         $_SESSION['message_type'] = "danger";
-        header("Location: ../vistas/signup.php");
+        header("Location: ../signup.php");
         exit;
     }
 } else {
     $_SESSION['message'] = 'Por favor rellena todos los campos y elije una imagen.';
     $_SESSION['message_type'] = "danger";
-    header("Location: ../vistas/signup.php");
+    header("Location: ../signup.php");
     exit;
 }
 

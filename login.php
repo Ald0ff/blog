@@ -12,17 +12,19 @@
     } ?>
 
 
-    <div class="card card-body login-form">
+    <div class="card card-body form">
         <h1>Login</h1>
 
         <form action="controllers/login.php" method="POST">
 
             <div class="form-group mb-3">
                 <input type="text" name="email" class="form-control" placeholder="Correo" autofocus>
+                <span class="text-error d-none">Este campo no puede estar vacio</span>
             </div>
 
             <div class="form-group mb-3">
                 <input type="password" name="password" class="form-control" placeholder="contraseña" autofocus>
+                <span class="text-error d-none">Este campo no puede estar vacio</span>
             </div>
 
             <input type="submit" name="Ingresar" class="btn btn-success btn-block" value="Ingresar">

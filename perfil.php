@@ -7,7 +7,7 @@ $filterByCurrentUser = true;
 
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: index.php'); 
+    header('Location: index.php');
     exit;
 }
 
@@ -50,16 +50,19 @@ include('includes/header.php')
 <?php } ?>
 <div class="container col-md-5">
     <section class="card  mb-5 mt-3 p-3 rounded-2">
-        <div class="d-flex flex-column align-items-center gap-3 border-1 align-items-end ">
+        <div class="d-flex position-relative flex-column align-items-center gap-3 border-1 align-items-end ">
             <img src="<?= "images/", $user['foto']; ?>" style="width: 150px; height: 150px" class=" rounded-circle " alt="">
             <div class="d-flex gap-5">
                 <h1>
                     <?= $user['nombre']; ?>
                 </h1>
-                <button data-bs-toggle="modal" data-bs-target="#miModal" style="height: 55px; width: 55px" class="ms-auto btn rounded-circle bg-light p-2" type="button">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                </button>
             </div>
+            <a href="controllers/logout.php" class="btn btn-danger btn-block">
+                Logout
+            </a>
+            <button data-bs-toggle="modal" data-bs-target="#miModal" style="height: 55px; width: 55px" class="ms-auto position-absolute top-5 end-0 btn rounded-circle bg-light p-2" type="button">
+                <i class="fa-solid fa-pen-to-square"></i>
+            </button>
         </div>
     </section>
     <div class="modal fade" id="miModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
