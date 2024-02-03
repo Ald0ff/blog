@@ -1,0 +1,12 @@
+.texto-limitado {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.error {
+    border: 1px solid red;
+    background-color: #ffcccc;
+}
